@@ -755,7 +755,8 @@ prepare_extra_jetson() {
     ffmpeg_patch="jetson-ffmpeg-add-nvmpi-support.patch"
     apt-get install -y quilt
     pushd ${SOURCE_DIR}
-    git clone --depth=1 https://github.com/Keylost/jetson-ffmpeg.git
+    #git clone --depth=1 https://github.com/Keylost/jetson-ffmpeg.git
+    git clone --depth=1 https://github.com/mguzzina/jetson-ffmpeg.git
 
     # generate patch from ffpatch.sh in jetson-ffmpeg and add it to the series
     ln -s debian/patches patches

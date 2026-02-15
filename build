@@ -108,13 +108,16 @@ cleanup() {
     # Remove tempdir
     rm -rf "${package_temporary_dir}"
 }
-trap cleanup EXIT INT
+# trap cleanup EXIT INT
 
 # Generate Dockerfile
 make -f Dockerfile.make DISTRO=${release} GCC_VER=${gcc_ver} LLVM_VER=${llvm_ver} LLVMSPIRVLIB_VER=${llvmspirvlib_ver} ARCH=${arch} CROSS=${cross}
 # Set up the build environment docker image
 ${container_cmd} build . -t "${image_name}"
 # Build the APKs and copy out to ${package_temporary_dir}
+echo "${container_cmd} run ${docker_run_args} --rm -e \"RELEASE=${release}\" -v \"${package_temporary_dir}:/dist\" \"${image_name}\""
+exit 0
+
 ${container_cmd} run ${docker_run_args} --rm -e "RELEASE=${release}" -v "${package_temporary_dir}:/dist" "${image_name}"
 # If no 3rd parameter was specified, move APKs to parent directory
 if [[ -z ${3} ]]; then

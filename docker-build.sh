@@ -785,6 +785,11 @@ prepare_extra_jetson() {
     popd
 }
 
+if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
+    echo "The script is being sourced, exiting"
+    return
+fi
+
 # Set the architecture-specific options
 case ${ARCH} in
     'amd64')

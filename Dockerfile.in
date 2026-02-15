@@ -62,4 +62,4 @@ VOLUME ${ARTIFACT_DIR}/
 
 COPY . ${SOURCE_DIR}/
 
-ENTRYPOINT ["/docker-build.sh"]
+# ENTRYPOINT ["/docker-build.sh"]

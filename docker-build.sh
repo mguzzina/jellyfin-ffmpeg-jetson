@@ -762,7 +762,19 @@ prepare_extra_jetson() {
     ln -s debian/patches patches
     quilt push -a
     quilt new $ffmpeg_patch
-    quilt add configure Makefile libavcodec/Makefile libavcodec/allcodecs.c libavcodec/nvmpi_dec.c libavcodec/nvmpi_enc.c
+    quilt add \
+        configure \
+        Makefile \
+        libavcodec/Makefile \
+        libavcodec/allcodecs.c \
+        libavcodec/nvmpi_dec.c \
+        libavcodec/nvmpi_enc.c \
+        libavutil/Makefile \
+        libavutil/hwcontext_internal.h \
+        libavutil/hwcontext.h \
+        libavutil/hwcontext.c \
+        libavutil/hwcontext_nvmpi.h \
+        libavutil/hwcontext_nvmpi.c
     pushd jetson-ffmpeg
     ./ffpatch.sh ${SOURCE_DIR}
     popd
